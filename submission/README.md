@@ -1,39 +1,38 @@
 # YourDOST Business Analyst Assignment Submission
-## Complete Deliverables Package for the Founder’s Office
+## Strategic Deliverables Package for the Founder’s Office
 
 **Candidate:** Cheekatipalli Nandhini  
 **Role:** Business Analyst, Founder’s Office — YourDOST  
 **Evaluator:** Puneet Manuja (Co-Founder, YourDOST) & Founder's Office Team (`associatefo@yourdost.com`)  
-**Live Prototype URL:** 🌐 **[https://yourdost-ai-compass.streamlit.app](https://yourdost-ai-compass.streamlit.app)**  
+**Live Working Prototype:** 🌐 **[https://goat-retired-dee-left.trycloudflare.com](https://goat-retired-dee-left.trycloudflare.com)**  
 **GitHub Repository:** 📁 **[https://github.com/Nandhini9193/yourdost-ai-compass](https://github.com/Nandhini9193/yourdost-ai-compass)**  
 
 ---
 
 ### Executive Overview
 
-This repository contains the complete deliverables for the two strategic tasks assigned by YourDOST:
-1. **Task 1: Data Analysis & Insights (Gaming Impact)** — In-depth statistical analysis of 100 Indian parents' survey responses, uncovering the School-Age conflict spike ($p = 0.0094$), the counter-intuitive "Rule Paradox", and the protective "Empathy Buffer", packaged into an infographic and supporting analytical report.
-2. **Task 2: AI-Powered Product Prototype ("DOST Compass")** — An interactive stepped-care triage navigator that eliminates employee choice paralysis, enforces YourDOST's core platform goal of **Therapist Continuity**, provides zero-latency crisis safety escalation, and delivers real-time clinical ops analytics.
+This repository contains the required deliverables for the two strategic tasks assigned by YourDOST:
+1. **Task 1: Data Analysis & Insights (Gaming Impact)** — Empirical statistical analysis of 100 Indian parents' survey responses, uncovering the School-Age domestic conflict spike ($p = 0.0094$), the counter-intuitive "Rule Paradox", and the protective "Empathy Buffer", delivered as an infographic and a 2-page analytical report.
+2. **Task 2: AI-Powered Product Prototype ("DOST Compass")** — An interactive stepped-care triage navigator that eliminates employee choice paralysis, enforces YourDOST's core platform mandate of **Therapist Continuity**, provides zero-latency crisis safety escalation, and delivers real-time clinical operations analytics.
 
 ---
 
-### Master Directory of Deliverables
+### Official Required Deliverables
 
 #### 📊 Task 1: Data Analysis & Insights (Parents’ Perceptions of Online Gaming)
-| Deliverable | Format | Link | Description |
+| Deliverable (per Prompt) | Format | Access Link | Description |
 | :--- | :--- | :--- | :--- |
-| **Social-Media Infographic (PNG)** | Image (1260x1900) | [View Infographic Image](./infographic_gaming_impact.png) | High-resolution visual narrative illustrating the 4 core empirical findings and the C.A.R.E. parenting framework. |
-| **Social-Media Infographic (PDF)** | Vector PDF | [View Infographic PDF](./infographic_gaming_impact.pdf) | Print-ready, vector PDF version of the infographic. |
-| **Supporting Analysis Document (PDF)** | Executive PDF | [View Task 1 Report (PDF)](./Task1_Data_Analysis_Supporting_Document.pdf) | 2-page concise analysis detailing statistical methodology, hypothesis tests ($t$-tests, Mann-Whitney $U$, ANOVA), behavioral interpretation, and data biases. |
+| **1. One-Page Infographic** | High-Res PNG & Vector PDF | **[View Infographic (PNG)](./infographic_gaming_impact.png)**<br>[Download PDF Version](./infographic_gaming_impact.pdf) | Social-media-ready visual narrative illustrating the 4 core empirical findings and the C.A.R.E. parenting framework. |
+| **2. Brief Supporting Document (1–2 Pages)** | Executive PDF | **[View Supporting Document (PDF)](./Task1_Data_Analysis_Supporting_Document.pdf)** | Concise analytical report detailing statistical methodology, hypothesis tests ($t$-tests, Mann-Whitney $U$, ANOVA), behavioral interpretation, and data limitations. |
 
 ---
 
-#### 🤖 Task 2: Build an AI-Powered Product Prototype ("DOST Compass")
-| Deliverable | Format | Link | Description |
+#### 🧭 Task 2: Build an AI-Powered Product Prototype ("DOST Compass")
+| Deliverable (per Prompt) | Format | Access Link | Description |
 | :--- | :--- | :--- | :--- |
-| **Live Interactive Prototype (Cloud)** | Web Application | **[Launch DOST Compass](https://yourdost-ai-compass.streamlit.app)** | Fully interactive web app with conversational triage, live Box Breathing widget, therapist booking with **Continuity Lock**, and real-time clinical operations metrics. |
-| **Prototype Visual Screenshot** | High-Res PNG | [View App Screenshot](./prototype_screenshot.png) | Visual capture of the live running application demonstrating the triage flow and 3-tier care stack. |
-| **Product Decisions Document (PDF)** | Executive PDF | [View Task 2 Decisions (PDF)](./Task2_AI_Product_Prototype_Document.pdf) | 2-page document outlining opportunity identification, why AI, assumptions, trade-offs, crisis protocols, and success metrics (Expert Stickiness Rate). |
+| **1. Working Prototype** | Live Web App & Runnable Demo | **[Launch DOST Compass (Live Link)](https://goat-retired-dee-left.trycloudflare.com)** | Fully interactive web application demonstrating natural conversational intake, live Box Breathing widget, therapist booking with **Continuity Lock**, and real-time clinical ops analytics. |
+| **2. Product Decisions Document (Max 2 Pages)** | Executive PDF | **[View Product Decisions (PDF)](./Task2_AI_Product_Prototype_Document.pdf)** | 2-page strategic document outlining opportunity identification, why AI, key assumptions, trade-offs, crisis escalation protocols, and success metrics (Stickiness Rate). |
+| **3. Prototype Walkthrough** | Markdown Guide | **[View Prototype Walkthrough Guide](./task2_prototype/Task2_Prototype_Walkthrough.md)** | Step-by-step walkthrough demonstrating 4 end-to-end user journeys (Burnout, Imposter Syndrome, Screen Battle, and Crisis SOS). |
 
 ---
 
@@ -65,3 +64,15 @@ npm install
 node server.js
 ```
 Open **`http://localhost:3000`** in your browser.
+
+---
+
+### Core Highlights of the Prototype
+
+* **Persona Switcher:** 1-click testing of realistic employee situations:
+  - 👔 **Priya — Workplace Burnout:** Sprint Overload $\rightarrow$ Somatic Box Breathing + CBT Counselor Matching with Continuity Lock.
+  - 📈 **Rahul — Imposter Syndrome:** Performance Panic $\rightarrow$ Cognitive Distortion Detangler.
+  - 🎮 **Sunita — Screen-Time Battles:** Evening Gaming Friction with 8-year-old $\rightarrow$ Collaborative Media Agreement Protocol.
+  - ⚠️ **Crisis SOS:** Critical distress marker detection $\rightarrow$ Immediate suspension of automated chat & takeover by 24/7 YourDOST emergency SOS clinical helpline.
+* **Therapist Continuity Lock:** Directly addresses YourDOST's core platform mandate (*"sticking to one expert"*) by permanently pairing the user with one specialist (e.g. Dr. Ananya Sen) so they never have to repeat their backstory.
+* **Clinical Operations & HR View:** Real-time dashboard tracking triage volume, severity streams, and an **84.2% Expert Stickiness Rate**.
