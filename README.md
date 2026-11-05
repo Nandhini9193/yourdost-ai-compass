@@ -4,7 +4,8 @@
 **Candidate:** Cheekatipalli Nandhini  
 **Role:** Business Analyst, Founder’s Office — YourDOST  
 **Evaluator:** Puneet Manuja (Co-Founder, YourDOST) & Founder's Office Team (`associatefo@yourdost.com`)  
-**Live Prototype URL:** 🌐 **[https://yourdost-ai-compass.streamlit.app](https://yourdost-ai-compass.streamlit.app)**  
+**Live Prototype URL:** 🌐 **[https://goat-retired-dee-left.trycloudflare.com](https://goat-retired-dee-left.trycloudflare.com)**  
+**Backup Cloud URL:** 🌐 **[https://yourdost-ai-compass.streamlit.app](https://yourdost-ai-compass.streamlit.app)**  
 **GitHub Repository:** 📁 **[https://github.com/Nandhini9193/yourdost-ai-compass](https://github.com/Nandhini9193/yourdost-ai-compass)**  
 
 ---
@@ -34,7 +35,7 @@ This repository contains the complete deliverables for the two strategic tasks a
 #### 🤖 Task 2: Build an AI-Powered Product Prototype ("DOST Compass")
 | Deliverable | Format | Link | Description |
 | :--- | :--- | :--- | :--- |
-| **Live Interactive Prototype (Cloud)** | Web Application | **[Launch DOST Compass](https://yourdost-ai-compass.streamlit.app)** | Fully interactive web app with conversational triage, live Box Breathing widget, therapist booking with **Continuity Lock**, and real-time clinical operations metrics. |
+| **Live Interactive Prototype (Cloud)** | Web Application | **[Launch DOST Compass](https://goat-retired-dee-left.trycloudflare.com)** | Fully interactive web app with conversational triage, live Box Breathing widget, therapist booking with **Continuity Lock**, and real-time clinical operations metrics. |
 | **Prototype Visual Screenshot** | High-Res PNG | [View App Screenshot](./submission/prototype_screenshot.png) | Visual capture of the live running application demonstrating the triage flow and 3-tier care stack. |
 | **Product Decisions Document (PDF)** | Executive PDF | [View Task 2 Decisions (PDF)](./submission/Task2_AI_Product_Prototype_Document.pdf) | 2-page document outlining opportunity identification, why AI, assumptions, trade-offs, crisis protocols, and success metrics (Expert Stickiness Rate). |
 | **Product Decisions Document (Markdown)** | Markdown | [View Task 2 Decisions (Markdown)](./task2_prototype/Task2_AI_Product_Prototype_Document.md) | Full source markdown document. |
