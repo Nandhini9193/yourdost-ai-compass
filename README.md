@@ -3,7 +3,6 @@
 
 **Candidate:** Cheekatipalli Nandhini  
 **Role:** Business Analyst, Founder’s Office — YourDOST  
-**Evaluator:** Puneet Manuja (Co-Founder, YourDOST) & Founder's Office Team (`associatefo@yourdost.com`)  
 **Live Working Prototype:** 🌐 **[https://goat-retired-dee-left.trycloudflare.com](https://goat-retired-dee-left.trycloudflare.com)**  
 **GitHub Repository:** 📁 **[https://github.com/Nandhini9193/yourdost-ai-compass](https://github.com/Nandhini9193/yourdost-ai-compass)**  
 
