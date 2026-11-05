@@ -15,6 +15,104 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
     
+        /* TIGHTEN STREAMLIT DEFAULT LAYOUT & CHROME */
+    header[data-testid="stHeader"] {
+        background: transparent !important;
+        height: 1.2rem !important;
+        z-index: 10 !important;
+    }
+    
+    .block-container {
+        padding-top: 0.8rem !important;
+        padding-bottom: 1.5rem !important;
+        padding-left: 1.2rem !important;
+        padding-right: 1.2rem !important;
+        max-width: 1400px !important;
+    }
+    
+    [data-testid="stSidebar"] {
+        background-color: #FFFFFF !important;
+        border-right: 1px solid var(--yd-border) !important;
+    }
+
+    [data-testid="stSidebarContent"] {
+        padding-top: 0.8rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        padding-bottom: 0.8rem !important;
+        overflow-y: hidden !important;
+    }
+
+    [data-testid="stSidebarUserContent"] {
+        padding-top: 0 !important;
+    }
+
+    /* CUSTOM COMPACT CLINICAL METRICS CARD */
+    .yd-ops-card {
+        background: #FAF9FC;
+        border: 1px solid #E8E6F0;
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin-bottom: 10px;
+    }
+
+    .yd-ops-header {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--yd-purple);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    .yd-ops-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+
+    .yd-ops-metric {
+        background: #FFFFFF;
+        border: 1px solid #E8E6F0;
+        border-radius: 8px;
+        padding: 6px 8px;
+    }
+
+    .yd-ops-label {
+        font-size: 10px;
+        color: #717171;
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+
+    .yd-ops-val {
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--yd-purple);
+        line-height: 1.1;
+    }
+
+    .yd-ops-sub {
+        font-size: 9px;
+        color: #059669;
+        font-weight: 700;
+        margin-top: 2px;
+    }
+
+    .yd-privacy-box {
+        background: linear-gradient(135deg, #F5F3FB 0%, #FFFFFF 100%);
+        border: 1px solid #D5CEE8;
+        border-radius: 10px;
+        padding: 9px 11px;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin-top: 6px;
+    }
+
     :root {
         --yd-purple: #2F2663;
         --yd-purple-light: #513D87;
@@ -50,7 +148,7 @@ st.markdown("""
         justify-content: space-between;
         align-items: center;
         border-bottom: 2px solid var(--yd-border);
-        margin-bottom: 22px;
+        margin-bottom: 14px;
     }
     
     .yd-logo {
@@ -108,9 +206,9 @@ st.markdown("""
     .yd-hero-banner {
         background: linear-gradient(135deg, #2F2663 0%, #46397E 100%);
         color: #FFFFFF;
-        padding: 24px 28px;
-        border-radius: 14px;
-        margin-bottom: 22px;
+        padding: 18px 24px;
+        border-radius: 12px;
+        margin-bottom: 16px;
         box-shadow: 0 4px 20px rgba(47, 38, 99, 0.15);
         display: flex;
         justify-content: space-between;
@@ -119,7 +217,7 @@ st.markdown("""
     
     .yd-hero-title {
         font-family: 'Poppins', sans-serif;
-        font-size: 24px;
+        font-size: 21px;
         font-weight: 700;
         color: #FFFFFF !important;
         margin-bottom: 4px;
@@ -331,30 +429,65 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# SIDEBAR CONTROLS
+# SIDEBAR CONTROLS (Pixel-compact, 0-scroll layout)
 with st.sidebar:
-    st.markdown("<h3 style='color:#2F2663;'>⚙️ Test User Personas</h3>", unsafe_allow_html=True)
-    st.caption("Select a real-world scenario to simulate instant triage:")
+    st.markdown("""
+    <div style="margin-bottom: 6px;">
+        <div style="font-family:'Poppins',sans-serif; font-weight:700; font-size:14px; color:#2F2663; display:flex; align-items:center; gap:6px;">
+            <span>⚙️</span> Test User Personas
+        </div>
+        <div style="font-size:11px; color:#717171; line-height:1.3; margin-top:1px;">
+            Simulate real-world employee front-door triage:
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
     selected_name = st.selectbox(
         "Choose Persona:",
-        list(PERSONAS.keys())
+        list(PERSONAS.keys()),
+        label_visibility="collapsed"
     )
     persona = PERSONAS[selected_name]
     
-    st.markdown("---")
-    st.markdown("<h3 style='color:#2F2663;'>📊 Clinical Operations View</h3>", unsafe_allow_html=True)
-    st.caption("Live metrics for internal YourDOST care supervisors:")
+    st.markdown("""
+    <div style="height:1px; background:#E8E6F0; margin:8px 0 10px 0;"></div>
     
-    col_m1, col_m2 = st.columns(2)
-    with col_m1:
-        st.metric("Triages Today", "68")
-        st.metric("Expert Stickiness", "84.2%", help="YourDOST Core Goal: % sticking to 1 expert")
-    with col_m2:
-        st.metric("Crisis Alerts", "1")
-        st.metric("Triage Latency", "1.3s")
-        
-    st.info("🔒 **B2B Privacy Guarantee:** All user sessions are cryptographically isolated from corporate HR dashboards.")
+    <div class="yd-ops-card">
+        <div class="yd-ops-header">
+            <span style="display:flex; align-items:center; gap:5px;">📊 Clinical & HR Ops</span>
+            <span style="font-size:9.5px; background:#ECFDF5; border:1px solid #A7F3D0; color:#065F46; padding:1px 6px; border-radius:10px; font-weight:700;">LIVE</span>
+        </div>
+        <div class="yd-ops-grid">
+            <div class="yd-ops-metric">
+                <div class="yd-ops-label">Triages Today</div>
+                <div class="yd-ops-val">68</div>
+            </div>
+            <div class="yd-ops-metric" style="border-color:#FEE2E2;">
+                <div class="yd-ops-label" style="color:#991B1B;">Crisis Alerts</div>
+                <div class="yd-ops-val" style="color:#DC2626;">1 <span style="font-size:9.5px; font-weight:600;">(SOS)</span></div>
+            </div>
+            <div class="yd-ops-metric" style="border-color:#D5CEE8;">
+                <div class="yd-ops-label" style="color:#513D87;">Stickiness Rate ★</div>
+                <div class="yd-ops-val" style="color:#2F2663;">84.2%</div>
+                <div class="yd-ops-sub">YourDOST Mandate</div>
+            </div>
+            <div class="yd-ops-metric">
+                <div class="yd-ops-label">Triage Latency</div>
+                <div class="yd-ops-val" style="color:#F47920;">1.3s</div>
+                <div class="yd-ops-sub" style="color:#717171; font-weight:500;">Real-time NLP</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="yd-privacy-box">
+        <span style="font-size:14px; line-height:1.2;">🔒</span>
+        <div style="font-size:11px; color:#46397E; line-height:1.35;">
+            <strong style="color:#2F2663; font-weight:700;">B2B Privacy Guarantee:</strong><br>
+            All user sessions are cryptographically isolated from corporate HR dashboards.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
 
 # TWO-COLUMN MAIN APPLICATION
 col_chat, col_rec = st.columns([1, 1.25], gap="large")
