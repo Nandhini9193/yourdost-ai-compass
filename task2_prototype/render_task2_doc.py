@@ -1,11 +1,38 @@
 import os
 import subprocess
 import html
+import shutil
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 md_path = os.path.join(base_dir, 'Task2_AI_Product_Prototype_Document.md')
+
+# Humanize and clean wording in MD
 with open(md_path, 'r', encoding='utf-8') as f:
     md_text = f.read()
+
+md_text = md_text.replace(
+    "YourDOST operates on a model where employees can book any expert",
+    "YourDOST operates on a delivery structure where employees can book any expert"
+)
+md_text = md_text.replace(
+    "- **Deterministic Crisis Gating vs. LLM Freedom:**",
+    "- **Deterministic Crisis Gating vs. Unconstrained Generative Chat:**"
+)
+md_text = md_text.replace(
+    "- **Rule-Based Hybrid Classifier vs. Pure Black-Box LLM:**",
+    "- **Rule-Based Hybrid Classifier vs. Pure Black-Box Generative Algorithms:**"
+)
+md_text = md_text.replace(
+    "Utilize structured clinical domain heuristics coupled with sentiment embeddings rather than an unconstrained generative chatbot.",
+    "Utilize structured clinical domain heuristics coupled with sentiment classification rather than an unconstrained generative chatbot."
+)
+md_text = md_text.replace(
+    "Guarantees predictable, auditable clinical outcomes and eliminates hallucinations.",
+    "Guarantees predictable, auditable clinical outcomes and eliminates conversational hallucinations."
+)
+
+with open(md_path, 'w', encoding='utf-8') as f:
+    f.write(md_text)
 
 html_body = []
 in_code = False
@@ -23,11 +50,11 @@ for line in md_text.split('\n'):
         html_body.append(html.escape(line))
         continue
     if l.startswith('# '):
-        html_body.append(f'<h1 style="color:#1e3a8a; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:8px; margin-top:20px;">{html.escape(l[2:])}</h1>')
+        html_body.append(f'<h1 style="color:#2F2663; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:8px; margin-top:20px;">{html.escape(l[2:])}</h1>')
     elif l.startswith('## '):
         html_body.append(f'<h2 style="color:#0f172a; font-size:18px; margin-top:16px; margin-bottom:8px;">{html.escape(l[3:])}</h2>')
     elif l.startswith('### '):
-        html_body.append(f'<h3 style="color:#1e40af; font-size:15px; margin-top:14px; margin-bottom:6px;">{html.escape(l[4:])}</h3>')
+        html_body.append(f'<h3 style="color:#F47920; font-size:15px; margin-top:14px; margin-bottom:6px;">{html.escape(l[4:])}</h3>')
     elif l.startswith('#### '):
         html_body.append(f'<h4 style="color:#334155; font-size:13px; margin-top:12px; margin-bottom:4px;">{html.escape(l[5:])}</h4>')
     elif l.startswith('|') and l.endswith('|'):
@@ -51,13 +78,17 @@ full_html = f"""<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Task 2: AI Product Strategy & Decisions</title>
+<title>Task 2: Product Strategy & Decisions Document</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+  @page {{
+    margin: 15mm 20mm;
+    size: A4;
+  }}
   body {{
     font-family: 'Plus Jakarta Sans', Arial, sans-serif;
     color: #1e293b;
-    padding: 30px 40px;
+    padding: 10px 20px;
     line-height: 1.5;
   }}
   table {{
@@ -69,6 +100,10 @@ full_html = f"""<!DOCTYPE html>
     border: 1px solid #cbd5e1;
     padding: 6px 10px;
     font-size: 11px;
+  }}
+  th {{
+    background-color: #f1f5f9;
+    font-weight: 700;
   }}
 </style>
 </head>
@@ -84,11 +119,19 @@ pdf_out = os.path.join(base_dir, 'Task2_AI_Product_Prototype_Document.pdf')
 with open(html_out, 'w', encoding='utf-8') as f:
     f.write(full_html)
 
-chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe"
+chrome_candidates = [
+    shutil.which('google-chrome'),
+    shutil.which('chrome'),
+    r'C:\Program Files\Google\Chrome\Application\chrome.exe',
+    r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+]
+chrome_bin = next((c for c in chrome_candidates if c and os.path.exists(c)), 'chrome')
+
 cmd_pdf = [
-    chrome_path,
+    chrome_bin,
     "--headless",
     "--disable-gpu",
+    "--no-pdf-header-footer",
     f"--print-to-pdf={pdf_out}",
     f"file:///{html_out}"
 ]

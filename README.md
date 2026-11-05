@@ -80,6 +80,6 @@ Open **`http://localhost:3000`** in your browser.
   - 👔 **Priya (Tech Lead):** Workplace Burnout & Sprint Overload $\rightarrow$ Somatic Box Breathing + CBT Counselor Matching with Continuity Lock.
   - 📈 **Rahul (Associate):** Imposter Syndrome & Performance Panic $\rightarrow$ Cognitive Distortion Detangler.
   - 🎮 **Sunita (Parent):** Screen-Time Battles with 8-year-old $\rightarrow$ Collaborative Media Agreement Protocol.
-  - ⚠️ **Safety Test:** Critical distress marker detection $\rightarrow$ Immediate suspension of algorithmic bot & takeover by 24/7 YourDOST SOS hotline.
+  - ⚠️ **Safety Test:** Critical distress marker detection $\rightarrow$ Immediate suspension of automated chat & takeover by 24/7 YourDOST emergency SOS clinical helpline.
 * **Therapist Continuity Lock:** Directly addresses YourDOST's core platform mandate (*"sticking to one expert"*) by permanently pairing the user with one specialist (e.g. Dr. Ananya Sen) so they never have to repeat their backstory.
 * **Clinical Operations & HR View:** Real-time dashboard tracking triage volume, severity streams, and an **84.2% Expert Stickiness Rate**.

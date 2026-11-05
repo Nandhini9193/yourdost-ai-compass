@@ -1,6 +1,7 @@
 import os
 import subprocess
 import html
+import shutil
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 md_path = os.path.join(base_dir, 'Task1_Data_Analysis_Supporting_Document.md')
@@ -23,11 +24,11 @@ for line in md_text.split('\n'):
         html_body.append(html.escape(line))
         continue
     if l.startswith('# '):
-        html_body.append(f'<h1 style="color:#1e3a8a; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:8px; margin-top:20px;">{html.escape(l[2:])}</h1>')
+        html_body.append(f'<h1 style="color:#2F2663; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:8px; margin-top:20px;">{html.escape(l[2:])}</h1>')
     elif l.startswith('## '):
         html_body.append(f'<h2 style="color:#0f172a; font-size:18px; margin-top:16px; margin-bottom:8px;">{html.escape(l[3:])}</h2>')
     elif l.startswith('### '):
-        html_body.append(f'<h3 style="color:#1e40af; font-size:15px; margin-top:14px; margin-bottom:6px;">{html.escape(l[4:])}</h3>')
+        html_body.append(f'<h3 style="color:#F47920; font-size:15px; margin-top:14px; margin-bottom:6px;">{html.escape(l[4:])}</h3>')
     elif l.startswith('#### '):
         html_body.append(f'<h4 style="color:#334155; font-size:13px; margin-top:12px; margin-bottom:4px;">{html.escape(l[5:])}</h4>')
     elif l.startswith('|') and l.endswith('|'):
@@ -54,10 +55,14 @@ full_html = f"""<!DOCTYPE html>
 <title>Task 1: Supporting Document</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+  @page {{
+    margin: 15mm 20mm;
+    size: A4;
+  }}
   body {{
     font-family: 'Plus Jakarta Sans', Arial, sans-serif;
     color: #1e293b;
-    padding: 30px 40px;
+    padding: 10px 20px;
     line-height: 1.5;
   }}
   table {{
@@ -88,11 +93,19 @@ pdf_out = os.path.join(base_dir, 'Task1_Data_Analysis_Supporting_Document.pdf')
 with open(html_out, 'w', encoding='utf-8') as f:
     f.write(full_html)
 
-chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe"
+chrome_candidates = [
+    shutil.which('google-chrome'),
+    shutil.which('chrome'),
+    r'C:\Program Files\Google\Chrome\Application\chrome.exe',
+    r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+]
+chrome_bin = next((c for c in chrome_candidates if c and os.path.exists(c)), 'chrome')
+
 cmd_pdf = [
-    chrome_path,
+    chrome_bin,
     "--headless",
     "--disable-gpu",
+    "--no-pdf-header-footer",
     f"--print-to-pdf={pdf_out}",
     f"file:///{html_out}"
 ]

@@ -20,7 +20,7 @@ In a B2B employee assistance platform like YourDOST, users arrive under states o
 This creates severe **cognitive friction and abandonment**:
 1. **Choice Paralysis:** When someone is emotionally depleted or experiencing anxiety, deciding whether they need a 45-minute therapy session, a 5-minute breathing exercise, or an article induces decision fatigue.
 2. **The "Therapy Chasm":** Jumping directly to booking a 1-on-1 counselor feels intimidating, high-commitment, and socially stigmatized. Conversely, generic articles feel trivializing to someone in deep distress.
-3. **The Provider Switching Dilemma (YourDOST Core Challenge):** As highlighted in the prompt, YourDOST operates on a model where employees can book any expert, but *the business and clinical goal is for them to stick to one expert*. When users don't know who to choose, they bounce across providers, destroying clinical continuity and therapeutic rapport.
+3. **The Provider Switching Dilemma (YourDOST Core Challenge):** As highlighted in the prompt, YourDOST operates on a delivery structure where employees can book any expert, but *the business and clinical goal is for them to stick to one expert*. When users don't know who to choose, they bounce across providers, destroying clinical continuity and therapeutic rapport.
 
 #### Why AI is the Right Solution
 - **Nuanced Natural Language Interpretation:** Emotional distress is expressed messily (*"I feel like a weight is on my chest and sprint deadlines are crushing me"*), which cannot be mapped by rigid dropdown filters. AI parses sentiment, life domain, and severity without forcing the user to take a clinical test.
@@ -74,12 +74,12 @@ This creates severe **cognitive friction and abandonment**:
 - **Stepped Recommendation vs. Full Catalog Access:**
   - *Decision:* Limit initial view to **one primary recommendation** and a 3-tier care stack, rather than displaying the complete library of 100+ resources.
   - *Trade-Off:* Sacrifice broad content discovery in exchange for slashing cognitive load and decision paralysis.
-- **Deterministic Crisis Gating vs. LLM Freedom:**
+- **Deterministic Crisis Gating vs. Unconstrained Generative Chat:**
   - *Decision:* In acute distress scenarios, the AI is **hard-coded** to halt open conversational therapy and redirect immediately to human emergency hotlines.
   - *Trade-Off:* The AI never attempts to "counsel" a suicidal or actively self-harming individual. Safety and liability strictly supersede engagement.
-- **Rule-Based Hybrid Classifier vs. Pure Black-Box LLM:**
-  - *Decision:* Utilize structured clinical domain heuristics coupled with sentiment embeddings rather than an unconstrained generative chatbot.
-  - *Trade-Off:* Guarantees predictable, auditable clinical outcomes and eliminates hallucinations.
+- **Rule-Based Hybrid Classifier vs. Pure Black-Box Generative Algorithms:**
+  - *Decision:* Utilize structured clinical domain heuristics coupled with sentiment classification rather than an unconstrained generative chatbot.
+  - *Trade-Off:* Guarantees predictable, auditable clinical outcomes and eliminates conversational hallucinations.
 
 ---
 

@@ -2,13 +2,17 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Task 2: AI Product Strategy & Decisions</title>
+<title>Task 2: Product Strategy & Decisions Document</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+  @page {
+    margin: 15mm 20mm;
+    size: A4;
+  }
   body {
     font-family: 'Plus Jakarta Sans', Arial, sans-serif;
     color: #1e293b;
-    padding: 30px 40px;
+    padding: 10px 20px;
     line-height: 1.5;
   }
   table {
@@ -21,10 +25,14 @@
     padding: 6px 10px;
     font-size: 11px;
   }
+  th {
+    background-color: #f1f5f9;
+    font-weight: 700;
+  }
 </style>
 </head>
 <body>
-<h1 style="color:#1e3a8a; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:8px; margin-top:20px;">Task 2: AI-Powered Product Prototype Strategy &amp; Decisions Document</h1>
+<h1 style="color:#2F2663; font-size:24px; border-bottom:2px solid #e2e8f0; padding-bottom:8px; margin-top:20px;">Task 2: AI-Powered Product Prototype Strategy &amp; Decisions Document</h1>
 <h2 style="color:#0f172a; font-size:18px; margin-top:16px; margin-bottom:8px;">DOST Compass: AI-Powered Stepped Care Triage &amp; Continuity Navigator</h2>
 <p style="font-size:12px; line-height:1.5; color:#334155; margin-bottom:8px;">**Author:** Cheekatipalli Nandhini</p>
 <p style="font-size:12px; line-height:1.5; color:#334155; margin-bottom:8px;">**Role Target:** Business Analyst, Founder’s Office — YourDOST</p>
@@ -35,19 +43,19 @@
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;"><strong>3. </strong>Strategic Decisions &amp; Product Architecture Document (This document + PDF export)</li>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;"><strong>4. </strong>Comprehensive User Journey Walkthrough Guide (`Task2_Prototype_Walkthrough.md`)</li>
 <hr style="border:none; border-top:1px solid #e2e8f0; margin:16px 0;">
-<h3 style="color:#1e40af; font-size:15px; margin-top:14px; margin-bottom:6px;">1. Identifying the Opportunity</h3>
+<h3 style="color:#F47920; font-size:15px; margin-top:14px; margin-bottom:6px;">1. Identifying the Opportunity</h3>
 <h4 style="color:#334155; font-size:13px; margin-top:12px; margin-bottom:4px;">The Specific User Problem: Choice Paralysis &amp; Emotional Friction at the Front Door</h4>
 <p style="font-size:12px; line-height:1.5; color:#334155; margin-bottom:8px;">In a B2B employee assistance platform like YourDOST, users arrive under states of acute cognitive overload, burnout, vulnerability, and pervasive stigma. The current industry paradigm confronts these overwhelmed employees with a &quot;catalog of options&quot;: 150+ self-help articles, 40+ DIY audio tracks, multiple clinical assessments (PHQ-9, GAD-7), and a directory of dozens of therapists.</p>
 <p style="font-size:12px; line-height:1.5; color:#334155; margin-bottom:8px;">This creates severe **cognitive friction and abandonment**:</p>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;"><strong>1. </strong>**Choice Paralysis:** When someone is emotionally depleted or experiencing anxiety, deciding whether they need a 45-minute therapy session, a 5-minute breathing exercise, or an article induces decision fatigue.</li>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;"><strong>2. </strong>**The &quot;Therapy Chasm&quot;:** Jumping directly to booking a 1-on-1 counselor feels intimidating, high-commitment, and socially stigmatized. Conversely, generic articles feel trivializing to someone in deep distress.</li>
-<li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;"><strong>3. </strong>**The Provider Switching Dilemma (YourDOST Core Challenge):** As highlighted in the prompt, YourDOST operates on a model where employees can book any expert, but *the business and clinical goal is for them to stick to one expert*. When users don&#x27;t know who to choose, they bounce across providers, destroying clinical continuity and therapeutic rapport.</li>
+<li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;"><strong>3. </strong>**The Provider Switching Dilemma (YourDOST Core Challenge):** As highlighted in the prompt, YourDOST operates on a delivery structure where employees can book any expert, but *the business and clinical goal is for them to stick to one expert*. When users don&#x27;t know who to choose, they bounce across providers, destroying clinical continuity and therapeutic rapport.</li>
 <h4 style="color:#334155; font-size:13px; margin-top:12px; margin-bottom:4px;">Why AI is the Right Solution</h4>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">**Nuanced Natural Language Interpretation:** Emotional distress is expressed messily (*&quot;I feel like a weight is on my chest and sprint deadlines are crushing me&quot;*), which cannot be mapped by rigid dropdown filters. AI parses sentiment, life domain, and severity without forcing the user to take a clinical test.</li>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">**Dynamic Cognitive Load Reduction (Stepped Care):** Instead of presenting a 50-item catalog, AI synthesizes the user&#x27;s state into **&quot;The Single Best Next Step&quot;** accompanied by a structured 3-tier care stack.</li>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">**Continuous Safety Monitoring &amp; Zero-Latency Triage:** AI provides immediate, deterministic guardrails to detect crisis/self-harm markers and route to 24/7 human clinicians instantly.</li>
 <hr style="border:none; border-top:1px solid #e2e8f0; margin:16px 0;">
-<h3 style="color:#1e40af; font-size:15px; margin-top:14px; margin-bottom:6px;">2. Product Solution &amp; Key Features: &quot;DOST Compass&quot;</h3>
+<h3 style="color:#F47920; font-size:15px; margin-top:14px; margin-bottom:6px;">2. Product Solution &amp; Key Features: &quot;DOST Compass&quot;</h3>
 <pre style="background:#f1f5f9; padding:12px; border-radius:8px; font-size:11px; overflow-x:auto; font-family:monospace; line-height:1.4; border:1px solid #cbd5e1;">
 +---------------------------------------------------------------------------------------------------+
 |                                  DOST COMPASS ARCHITECTURE                                        |
@@ -77,7 +85,7 @@
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;"><strong>4. </strong>**The &quot;Continuity Lock&quot; Guarantee:** Explicitly solves YourDOST&#x27;s operational mandate. Reassures the user: *&quot;Meet Dr. Ananya Sen. She is locked as your dedicated care partner for all future check-ins so you never have to re-explain your backstory.&quot;*</li>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;"><strong>5. </strong>**Clinical Ops &amp; HR Insights Drawer:** Gives internal clinical response teams real-time visibility into triage volumes and severity streams, while providing corporate HR with anonymized, aggregated burnout indices.</li>
 <hr style="border:none; border-top:1px solid #e2e8f0; margin:16px 0;">
-<h3 style="color:#1e40af; font-size:15px; margin-top:14px; margin-bottom:6px;">3. Critical Product Decisions, Assumptions &amp; Trade-Offs</h3>
+<h3 style="color:#F47920; font-size:15px; margin-top:14px; margin-bottom:6px;">3. Critical Product Decisions, Assumptions &amp; Trade-Offs</h3>
 <h4 style="color:#334155; font-size:13px; margin-top:12px; margin-bottom:4px;">Key Assumptions</h4>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;"><strong>1. </strong>**B2B Trust Ceiling:** Employees will only share vulnerable truths if they are 100% convinced their employer/HR has zero access to individual logs.</li>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;"><strong>2. </strong>**Willingness for Low-Stakes Engagement:** A burnt-out employee who declines a 45-minute counseling session will readily engage with a 2-minute somatic breathing exercise, which subsequently lowers the psychological threshold for booking therapy.</li>
@@ -86,21 +94,21 @@
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">**Stepped Recommendation vs. Full Catalog Access:**</li>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">*Decision:* Limit initial view to **one primary recommendation** and a 3-tier care stack, rather than displaying the complete library of 100+ resources.</li>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">*Trade-Off:* Sacrifice broad content discovery in exchange for slashing cognitive load and decision paralysis.</li>
-<li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">**Deterministic Crisis Gating vs. LLM Freedom:**</li>
+<li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">**Deterministic Crisis Gating vs. Unconstrained Generative Chat:**</li>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">*Decision:* In acute distress scenarios, the AI is **hard-coded** to halt open conversational therapy and redirect immediately to human emergency hotlines.</li>
 <li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">*Trade-Off:* The AI never attempts to &quot;counsel&quot; a suicidal or actively self-harming individual. Safety and liability strictly supersede engagement.</li>
-<li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">**Rule-Based Hybrid Classifier vs. Pure Black-Box LLM:**</li>
-<li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">*Decision:* Utilize structured clinical domain heuristics coupled with sentiment embeddings rather than an unconstrained generative chatbot.</li>
-<li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">*Trade-Off:* Guarantees predictable, auditable clinical outcomes and eliminates hallucinations.</li>
+<li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">**Rule-Based Hybrid Classifier vs. Pure Black-Box Generative Algorithms:**</li>
+<li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">*Decision:* Utilize structured clinical domain heuristics coupled with sentiment classification rather than an unconstrained generative chatbot.</li>
+<li style="margin-left:20px; font-size:12px; line-height:1.5; color:#334155; margin-bottom:4px;">*Trade-Off:* Guarantees predictable, auditable clinical outcomes and eliminates conversational hallucinations.</li>
 <hr style="border:none; border-top:1px solid #e2e8f0; margin:16px 0;">
-<h3 style="color:#1e40af; font-size:15px; margin-top:14px; margin-bottom:6px;">4. Handling AI Errors, Privacy &amp; Crisis Escalation</h3>
+<h3 style="color:#F47920; font-size:15px; margin-top:14px; margin-bottom:6px;">4. Handling AI Errors, Privacy &amp; Crisis Escalation</h3>
 <table style="border-collapse:collapse; width:100%; margin:8px 0;"><tr><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">Risk Area</td><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">Failure Mode</td><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">Mitigation &amp; System Protocol</td></tr></table>
 <table style="border-collapse:collapse; width:100%; margin:8px 0;"><tr><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">**Crisis &amp; Red Flags**</td><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">User expresses self-harm or acute suicidality.</td><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">**Zero-Tolerance Human Escalation:** Instant UI takeover. 1-click connection to YourDOST 24/7 on-call supervisor; logs clinical alert; suppresses algorithmic generation.</td></tr></table>
 <table style="border-collapse:collapse; width:100%; margin:8px 0;"><tr><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">**AI Misclassification**</td><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">Mild stress misdiagnosed as severe, or vice-versa.</td><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">**Stepped Fallback:** All tiers remain visible on screen. If a user feels counseling is too intensive, they can effortlessly pivot to the Level 1 breathing tool or Level 2 DIY article with zero friction.</td></tr></table>
 <table style="border-collapse:collapse; width:100%; margin:8px 0;"><tr><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">**B2B Privacy &amp; Stigma**</td><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">Employee fears HR retaliation or surveillance.</td><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">**Zero Corporate Data Sharing:** Data architecture isolates corporate employer billing IDs from clinical conversation logs. HR dashboards display only $k$-anonymized aggregate indices ($N \ge 50$).</td></tr></table>
 <table style="border-collapse:collapse; width:100%; margin:8px 0;"><tr><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">**Therapist Misalignment**</td><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">User does not feel rapport with matched counselor.</td><td style="border:1px solid #cbd5e1; padding:6px 10px; font-size:11.5px;">**Frictionless Re-Matching:** While the system defaults to the &quot;Continuity Lock&quot;, the user is given a gentle 1-click option: *&quot;Request a different specialist&quot;* without awkwardness.</td></tr></table>
 <hr style="border:none; border-top:1px solid #e2e8f0; margin:16px 0;">
-<h3 style="color:#1e40af; font-size:15px; margin-top:14px; margin-bottom:6px;">5. Success Metrics &amp; Evaluation Framework</h3>
+<h3 style="color:#F47920; font-size:15px; margin-top:14px; margin-bottom:6px;">5. Success Metrics &amp; Evaluation Framework</h3>
 <p style="font-size:12px; line-height:1.5; color:#334155; margin-bottom:8px;">To evaluate whether DOST Compass successfully solves the user problem and aligns with YourDOST’s business objectives, we define a balanced scorecard:</p>
 <pre style="background:#f1f5f9; padding:12px; border-radius:8px; font-size:11px; overflow-x:auto; font-family:monospace; line-height:1.4; border:1px solid #cbd5e1;">
 +───────────────────────────+───────────────────────────────────────────────────────────────+
