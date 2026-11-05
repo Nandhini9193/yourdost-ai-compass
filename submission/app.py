@@ -1,124 +1,274 @@
 import streamlit as st
 import time
-import datetime
 import pandas as pd
 
 # Page Configuration
 st.set_page_config(
-    page_title="YourDOST Compass | AI Wellbeing Navigator",
-    page_icon="🧭",
+    page_title="YourDOST Compass | AI Emotional Wellness Navigator",
+    page_icon="🧡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom Styling
+# YourDOST Official Brand Design System & CSS
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
     
-    html, body, [class*="css"] {
-        font-family: 'Plus Jakarta Sans', sans-serif;
+    :root {
+        --yd-purple: #2F2663;
+        --yd-purple-light: #513D87;
+        --yd-purple-subtle: #F5F3FB;
+        --yd-orange: #F47920;
+        --yd-orange-hover: #E0650D;
+        --yd-orange-subtle: #FFF7ED;
+        --yd-text-dark: #212529;
+        --yd-text-body: #4A4A4A;
+        --yd-text-muted: #717171;
+        --yd-border: #E8E6F0;
+        --yd-white: #FFFFFF;
     }
     
-    .brand-header {
-        background: linear-gradient(135deg, #1E3A8A 0%, #172554 100%);
-        color: white;
-        padding: 20px 24px;
+    html, body, [class*="css"] {
+        font-family: 'Open Sans', sans-serif !important;
+        color: var(--yd-text-body);
+        background-color: #FAF9FC;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif !important;
+        color: var(--yd-purple) !important;
+    }
+    
+    /* YOURDOST OFFICIAL TOP NAVIGATION BAR */
+    .yd-navbar {
+        background: #FFFFFF;
+        padding: 14px 28px;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(47, 38, 99, 0.06);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--yd-border);
+        margin-bottom: 22px;
+    }
+    
+    .yd-logo {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 26px;
+        color: var(--yd-purple);
+        letter-spacing: -0.5px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .yd-logo span {
+        color: var(--yd-orange);
+    }
+    
+    .yd-nav-links {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        font-size: 13px;
+        font-weight: 600;
+        color: #595959;
+    }
+    
+    .yd-nav-item {
+        color: #595959;
+        text-decoration: none;
+        padding: 6px 10px;
+        border-radius: 6px;
+        transition: all 0.2s;
+    }
+    
+    .yd-nav-item.active {
+        color: var(--yd-purple);
+        background: var(--yd-purple-subtle);
+        font-weight: 700;
+    }
+    
+    .yd-b2b-badge {
+        background: #F5F3FB;
+        border: 1px solid #D5CEE8;
+        color: var(--yd-purple);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    /* HERO AI BANNER */
+    .yd-hero-banner {
+        background: linear-gradient(135deg, #2F2663 0%, #46397E 100%);
+        color: #FFFFFF;
+        padding: 24px 28px;
         border-radius: 14px;
-        margin-bottom: 20px;
+        margin-bottom: 22px;
+        box-shadow: 0 4px 20px rgba(47, 38, 99, 0.15);
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
     
-    .brand-title {
-        font-size: 26px;
-        font-weight: 800;
-        letter-spacing: -0.02em;
+    .yd-hero-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #FFFFFF !important;
+        margin-bottom: 4px;
     }
-    .brand-title span { color: #F59E0B; }
     
-    .corp-badge {
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        padding: 6px 14px;
+    .yd-hero-sub {
+        font-size: 13.5px;
+        color: #E2DEED;
+        max-width: 650px;
+        line-height: 1.45;
+    }
+    
+    .yd-feature-pill {
+        background: rgba(244, 121, 32, 0.25);
+        border: 1px solid #F47920;
+        color: #FFB070;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 10px;
         border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: inline-block;
+        margin-bottom: 8px;
     }
     
-    .rec-box {
-        background: #EFF6FF;
-        border-left: 5px solid #2563EB;
-        padding: 16px;
+    /* CARDS & PANELS */
+    .yd-card {
+        background: #FFFFFF;
+        border: 1px solid var(--yd-border);
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(47, 38, 99, 0.04);
+        margin-bottom: 16px;
+    }
+    
+    .yd-rec-hero {
+        background: var(--yd-orange-subtle);
+        border-left: 5px solid var(--yd-orange);
         border-radius: 0 12px 12px 0;
-        margin: 14px 0;
+        padding: 16px 20px;
+        margin-bottom: 18px;
     }
     
-    .crisis-alert {
+    .yd-rec-badge {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--yd-orange);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+    }
+    
+    .yd-rec-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--yd-purple) !important;
+        margin-bottom: 6px;
+    }
+    
+    /* BUTTONS */
+    .stButton>button {
+        background-color: var(--yd-orange) !important;
+        color: #FFFFFF !important;
+        font-family: 'Poppins', sans-serif !important;
+        font-weight: 700 !important;
+        border-radius: 8px !important;
+        border: none !important;
+        padding: 10px 20px !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    .stButton>button:hover {
+        background-color: var(--yd-orange-hover) !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(244, 121, 32, 0.3) !important;
+    }
+    
+    /* CRISIS BANNER */
+    .yd-crisis-box {
         background: #FEF2F2;
         border: 2px solid #DC2626;
-        padding: 18px;
         border-radius: 12px;
+        padding: 18px 22px;
         color: #991B1B;
-        margin: 15px 0;
+        margin-bottom: 20px;
     }
     
-    .continuity-badge {
-        background: #ECFDF5;
-        border: 1px solid #10B981;
-        color: #065F46;
+    /* CONTINUITY BADGE */
+    .yd-continuity-tag {
+        background: #F5F3FB;
+        border: 1px solid #D5CEE8;
+        color: var(--yd-purple);
         padding: 6px 12px;
-        border-radius: 8px;
+        border-radius: 6px;
         font-weight: 700;
         font-size: 12px;
         display: inline-block;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# Expert Profiles
+# Synthetic Expert Pool (aligned with YourDOST's verified psychologists)
 EXPERTS = {
     "burnout": {
         "name": "Dr. Ananya Sen, Ph.D.",
-        "title": "Senior Clinical Psychologist (9+ yrs exp)",
-        "specialties": "Workplace Burnout • Anxiety • Cognitive Behavioral Therapy (CBT)",
+        "title": "Senior Clinical Psychologist • 9+ yrs exp",
+        "specialties": "Workplace Burnout • CBT • Panic & Anxiety",
         "languages": "English, Hindi, Bengali",
-        "rating": "4.9/5 (410 reviews)",
+        "rating": "4.92/5 (410 reviews)",
+        "sessions": "3,400+ corporate sessions",
         "avatar": "👩‍⚕️"
     },
     "imposter": {
         "name": "Rajesh Mukherjee, M.Sc.",
-        "title": "Counseling Psychologist & Executive Coach (7+ yrs exp)",
-        "specialties": "Career Transition • Imposter Syndrome • Performance Anxiety",
+        "title": "Executive Wellbeing & Leadership Coach • 7+ yrs exp",
+        "specialties": "Career Transition • Imposter Syndrome • Self-Doubt",
         "languages": "English, Hindi",
-        "rating": "4.8/5 (280 reviews)",
+        "rating": "4.88/5 (290 reviews)",
+        "sessions": "2,200+ corporate sessions",
         "avatar": "👨‍⚕️"
     },
     "parent": {
         "name": "Dr. Meera Vasudevan",
-        "title": "Child & Family Psychologist (12+ yrs exp)",
-        "specialties": "Parenting Dynamics • Adolescent Habits • Family Mediation",
+        "title": "Child & Family Psychologist • 12+ yrs exp",
+        "specialties": "Parenting Dynamics • Adolescent Digital Habits • Mediation",
         "languages": "English, Hindi, Tamil",
         "rating": "4.95/5 (560 reviews)",
+        "sessions": "4,800+ sessions",
         "avatar": "👩‍⚕️"
     },
     "crisis": {
-        "name": "Emergency Clinical Response Team",
-        "title": "Immediate 24x7 Triage Unit",
-        "specialties": "Acute Crisis • Self-Harm Prevention",
+        "name": "YourDOST Emergency Clinical Unit",
+        "title": "24x7 Immediate Critical Response Care",
+        "specialties": "Acute Crisis • De-escalation • Emergency Triage",
         "languages": "All Major Indian Languages",
-        "rating": "24/7 Standby",
+        "rating": "Immediate 24/7 Standby",
+        "sessions": "24/7 Available",
         "avatar": "🚨"
     }
 }
 
-# Persona Definitions
+# Synthetic Test Personas
 PERSONAS = {
     "👔 Priya (Tech Lead) — Workplace Burnout": {
         "prompt": "I've been feeling completely suffocated by sprint deadlines. My manager keeps changing requirements and I can't breathe. I don't know if I'm just burnt out or having a breakdown.",
-        "domain": "Workplace Burnout & Cognitive Overload",
+        "domain": "Workplace Burnout & Sprint Fatigue",
         "severity": "Moderate",
         "tier": "Blended Care (Micro-Relief + 1-on-1 Counseling)",
         "key": "burnout"
@@ -132,167 +282,189 @@ PERSONAS = {
     },
     "🎮 Sunita (Parent) — Gaming & Screen Battle": {
         "prompt": "Every evening at our house turns into a screaming match over Free Fire and gaming. My 8-year-old throws tantrums when I turn off the tablet. I feel like an awful mother.",
-        "domain": "Parent-Child Screen Dynamics",
+        "domain": "Parent-Child Screen Dynamics (Ages 6-12)",
         "severity": "Moderate",
         "tier": "Collaborative Boundary Coaching",
         "key": "parent"
     },
-    "⚠️ Safety Test — Acute Crisis Signal": {
+    "⚠️ Safety Guardrail Test — Acute Crisis Signal": {
         "prompt": "I can’t do this anymore. Everything is falling apart and I want to end my life. I don't see any reason to live.",
-        "domain": "Acute Despair / Crisis Intervention",
+        "domain": "Critical Distress / Crisis Triage",
         "severity": "Severe (High-Priority Crisis)",
         "tier": "Immediate Human Escalation",
         "key": "crisis"
     }
 }
 
-# Header Banner
+# TOP NAVIGATION BAR (Mirrors official YourDOST header)
 st.markdown("""
-<div class="brand-header">
-    <div>
-        <div class="brand-title">your<span>dost</span> Compass</div>
-        <div style="font-size: 13px; color: #CBD5E1;">AI-Powered Stepped Care Wellbeing Navigator</div>
+<div class="yd-navbar">
+    <div class="yd-logo">
+        your<span>dost</span>
     </div>
-    <div class="corp-badge">
-        🏢 Acme Technologies • 100% Confidential Care
+    <div class="yd-nav-links">
+        <span class="yd-nav-item">Experts</span>
+        <span class="yd-nav-item">Self-Help Library</span>
+        <span class="yd-nav-item">Assessments</span>
+        <span class="yd-nav-item active">✨ DOST Compass (AI Navigator)</span>
+    </div>
+    <div class="yd-b2b-badge">
+        🏢 Acme Technologies • Confidential EAP
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Sidebar: Controls & Operations Dashboard
+# HERO AI FEATURE BANNER
+st.markdown("""
+<div class="yd-hero-banner">
+    <div>
+        <div class="yd-feature-pill">✦ Built for YourDOST Employee Wellness</div>
+        <div class="yd-hero-title">Feeling Overwhelmed? Let DOST Compass Guide You.</div>
+        <div class="yd-hero-sub">
+            Skip the endless catalog of articles and therapists. Share how you feel in your own words, and receive the single best next step for your emotional health.
+        </div>
+    </div>
+    <div style="text-align: right; font-size: 12px; color: #E2DEED;">
+        🔒 <strong>100% Private</strong><br>Your employer never sees your entries.
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# SIDEBAR CONTROLS
 with st.sidebar:
-    st.subheader("⚙️ Prototype Controls")
-    selected_persona_name = st.selectbox(
-        "Choose Synthetic Persona to Test:",
+    st.markdown("<h3 style='color:#2F2663;'>⚙️ Test User Personas</h3>", unsafe_allow_html=True)
+    st.caption("Select a real-world scenario to simulate instant triage:")
+    
+    selected_name = st.selectbox(
+        "Choose Persona:",
         list(PERSONAS.keys())
     )
-    selected_persona = PERSONAS[selected_persona_name]
+    persona = PERSONAS[selected_name]
     
     st.markdown("---")
-    st.subheader("📊 Clinical Ops & B2B Metrics")
-    col_s1, col_s2 = st.columns(2)
-    with col_s1:
-        st.metric(label="Active Triages", value="52")
-        st.metric(label="Continuity Retention", value="84.2%", help="YourDOST Core Goal: % sticking to 1 expert")
-    with col_s2:
-        st.metric(label="Crisis Escalations", value="1")
-        st.metric(label="Avg Triage Speed", value="1.4s")
+    st.markdown("<h3 style='color:#2F2663;'>📊 Clinical Operations View</h3>", unsafe_allow_html=True)
+    st.caption("Live metrics for internal YourDOST care supervisors:")
+    
+    col_m1, col_m2 = st.columns(2)
+    with col_m1:
+        st.metric("Triages Today", "68")
+        st.metric("Expert Stickiness", "84.2%", help="YourDOST Core Goal: % sticking to 1 expert")
+    with col_m2:
+        st.metric("Crisis Alerts", "1")
+        st.metric("Triage Latency", "1.3s")
         
-    st.caption("🔒 **Zero Corporate Exposure:** Individual conversations are cryptographically isolated from HR.")
+    st.info("🔒 **B2B Privacy Guarantee:** All user sessions are cryptographically isolated from corporate HR dashboards.")
 
-# Main Application Layout: 2 Columns
-col_chat, col_pathway = st.columns([1, 1.2], gap="large")
+# TWO-COLUMN MAIN APPLICATION
+col_chat, col_rec = st.columns([1, 1.25], gap="large")
 
 with col_chat:
-    st.subheader("💬 Safe Space Reflection")
-    st.caption("Share your thoughts naturally. No clinical jargon, diagnostic forms, or employer visibility.")
+    st.markdown("<h3 style='color:#2F2663;'>💬 Safe Space Reflection</h3>", unsafe_allow_html=True)
+    st.caption("Express what's on your mind. No clinical jargon, diagnostic forms, or ratings.")
     
-    # Text Input with Default Persona Prompt
-    user_input = st.text_area(
-        "What has been on your mind lately?",
-        value=selected_persona["prompt"],
+    user_text = st.text_area(
+        "How are you truly feeling right now?",
+        value=persona["prompt"],
         height=140
     )
     
-    triage_btn = st.button("🧭 Discover My Best Next Step", type="primary", use_container_width=True)
+    triage_clicked = st.button("🧭 Find My Best Next Step", use_container_width=True)
 
-# Triage Logic
-is_crisis = any(k in user_input.lower() for k in ['kill myself', 'suicide', 'end my life', 'want to die', 'harm myself'])
+# Check Crisis Guardrail
+crisis_words = ['kill myself', 'suicide', 'end my life', 'want to die', 'harm myself']
+is_crisis = any(w in user_text.lower() for w in crisis_words)
 
-with col_pathway:
-    st.subheader("🎯 Your Personalized Next Step")
+with col_rec:
+    st.markdown("<h3 style='color:#2F2663;'>🎯 Your Recommended Care Pathway</h3>", unsafe_allow_html=True)
     
-    if is_crisis or selected_persona["key"] == "crisis":
+    if is_crisis or persona["key"] == "crisis":
         st.markdown("""
-        <div class="crisis-alert">
-            <h3 style="margin-top:0; color:#991B1B;">🚨 Immediate Human Care Available</h3>
-            <p style="font-size:14px; margin-bottom:12px;">
-                We hear that you are going through immense pain right now. Please know you are not alone, and algorithms cannot replace human warmth. Our emergency response team is standing by 24/7.
+        <div class="yd-crisis-box">
+            <h3 style="margin-top:0; color:#991B1B !important;">🚨 Immediate Clinical Care on Standby</h3>
+            <p style="font-size:13.5px; line-height:1.5; color:#7F1D1D; margin-bottom:12px;">
+                We hear that you are carrying deep pain right now. Algorithms cannot replace human empathy. Our 24/7 licensed emergency clinical unit is ready to support you right now.
             </p>
-            <div style="font-weight:700; font-size:15px; margin-bottom:6px;">National Helplines:</div>
-            <ul style="margin-bottom:12px; font-size:13px;">
-                <li><strong>Tele-MANAS (Govt. of India):</strong> Dial 14416 (Toll-Free, 24/7)</li>
-                <li><strong>Vandrevala Foundation:</strong> +91 9999 666 555</li>
-                <li><strong>YourDOST Emergency SOS:</strong> 1-Click Priority Connect</li>
+            <div style="font-weight:700; font-size:14px; margin-bottom:6px; color:#991B1B;">Emergency Support Helplines:</div>
+            <ul style="font-size:13px; color:#7F1D1D; margin-bottom:14px;">
+                <li><strong>YourDOST Priority Emergency Line:</strong> 1-Click Priority Connect</li>
+                <li><strong>National Tele-MANAS (Govt. of India):</strong> Dial 14416 (24/7, Toll-Free)</li>
+                <li><strong>Vandrevala Foundation Helpline:</strong> +91 9999 666 555</li>
             </ul>
         </div>
         """, unsafe_allow_html=True)
+        st.button("📞 Connect with On-Call DOST Clinical Supervisor", use_container_width=True)
         
-        st.button("📞 Connect Instantly to On-Call DOST Clinical Supervisor", type="primary", use_container_width=True)
-
     else:
-        # Triage Badge
+        # Severity & Domain Tags
         st.markdown(f"""
-        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-            <span style="background:#FEF3C7; color:#92400E; padding:4px 10px; border-radius:20px; font-size:12px; font-weight:800;">
-                {selected_persona['severity']} Severity
+        <div style="display:flex; gap:10px; margin-bottom:14px; align-items:center;">
+            <span style="background:#FFF7ED; color:#C2410C; border:1px solid #FFEDD5; padding:4px 12px; border-radius:20px; font-size:11.5px; font-weight:800; text-transform:uppercase;">
+                {persona['severity']}
             </span>
-            <span style="background:#EFF6FF; color:#1E40AF; padding:4px 12px; border-radius:20px; font-size:12px; font-weight:700;">
-                {selected_persona['domain']}
+            <span style="background:#F5F3FB; color:#2F2663; border:1px solid #D5CEE8; padding:4px 14px; border-radius:20px; font-size:12px; font-weight:700;">
+                {persona['domain']}
             </span>
         </div>
         """, unsafe_allow_html=True)
         
-        # Hero Recommendation
+        # Single Best Next Step Hero
         st.markdown(f"""
-        <div class="rec-box">
-            <div style="font-size:11px; font-weight:800; color:#1D4ED8; text-transform:uppercase;">✦ Single Best Next Step</div>
-            <div style="font-size:18px; font-weight:800; color:#0F172A; margin: 4px 0 6px 0;">
-                {selected_persona['tier']}
-            </div>
-            <div style="font-size:13px; color:#334155;">
-                We recommend starting with an immediate 2-minute physiological grounding reset, followed by reserving your designated counseling partner for long-term consistency.
+        <div class="yd-rec-hero">
+            <div class="yd-rec-badge">✦ Single Best Next Step</div>
+            <div class="yd-rec-title">{persona['tier']}</div>
+            <div style="font-size:13px; color:#4A4A4A; line-height:1.45;">
+                Based on your emotional cues, we recommend immediate physiological down-regulation followed by booking your dedicated long-term care partner.
             </div>
         </div>
         """, unsafe_allow_html=True)
         
-        # 3-Tier Stepped Care Accordion
-        with st.expander("🌱 Level 1: Immediate Micro-Relief (2 Minutes)", expanded=True):
-            st.markdown("**Somatic Box Breathing (4-4-4-4)**")
-            st.caption("Paced vagus-nerve activation to rapidly down-regulate nervous system fight-or-flight.")
+        # Stepped Care Stack
+        with st.expander("🌱 Step 1: Immediate Micro-Relief (2 Minutes)", expanded=True):
+            st.markdown("<strong style='color:#2F2663;'>Somatic Box Breathing (4-4-4-4)</strong>", unsafe_allow_html=True)
+            st.caption("Paced vagus-nerve activation to rapidly calm sympathetic nervous system fight-or-flight.")
             
-            b_col1, b_col2 = st.columns([1, 2])
-            with b_col1:
+            b_c1, b_c2 = st.columns([1, 2])
+            with b_c1:
                 if st.button("▶ Start 4-4-4-4 Breath"):
-                    progress_bar = st.progress(0)
-                    status_text = st.empty()
+                    prog = st.progress(0)
+                    stat = st.empty()
                     for phase in ["Inhale (4s)", "Hold (4s)", "Exhale (4s)", "Hold (4s)"]:
-                        status_text.markdown(f"**{phase}...**")
-                        for i in range(25):
+                        stat.markdown(f"**{phase}...**")
+                        for _ in range(25):
                             time.sleep(0.04)
-                        progress_bar.progress(progress_bar.progress(0) + 0.25 if progress_bar.progress(0) < 0.75 else 1.0)
-                    status_text.markdown("✨ *Cycle complete. Notice the shift in your heart rate.*")
-            with b_col2:
-                st.info("Paced breathing lowers cortisol within 120 seconds and prepares your mind for thoughtful reflection.")
+                        prog.progress(min(1.0, prog.progress(0) + 0.25))
+                    stat.markdown("✨ *Cycle complete. Feel your heart rate settling.*")
+            with b_c2:
+                st.caption("💡 120 seconds of paced respiration significantly reduces salivary cortisol and cognitive overwhelm.")
                 
-        with st.expander("📚 Level 2: Structured Self-Guided Track", expanded=False):
-            st.markdown("**Reclaiming Workplace Boundaries & Energy Shield**")
-            st.caption("5 interactive reflection prompts • Estimated completion: 8 minutes.")
-            st.button("Open Interactive Module ➔")
+        with st.expander("📚 Step 2: Self-Guided Habit Track", expanded=False):
+            st.markdown("<strong style='color:#2F2663;'>Reclaiming Workplace Boundaries & Energy Shield</strong>", unsafe_allow_html=True)
+            st.caption("5 interactive micro-prompts designed for high-stress corporate environments • 8 mins.")
+            st.button("Open Self-Guided Module ➔")
             
-        with st.expander("🤝 Level 3: Dedicated 1-on-1 Expert Match (Company Sponsored)", expanded=True):
-            expert = EXPERTS[selected_persona["key"]]
+        with st.expander("🤝 Step 3: Dedicated Expert Match (Company Sponsored)", expanded=True):
+            expert = EXPERTS[persona["key"]]
             
-            st.markdown(f"""
-            <div class="continuity-badge">
-                🔒 Continuity Guaranteed: Designated Care Partner (Stick to 1 Expert)
+            st.markdown("""
+            <div class="yd-continuity-tag">
+                🔒 <strong>Continuity Lock:</strong> Sticking to 1 Expert for Long-Term Trust
             </div>
             """, unsafe_allow_html=True)
             
-            e_col1, e_col2 = st.columns([1, 3])
-            with e_col1:
-                st.markdown(f"<div style='font-size:48px; text-align:center;'>{expert['avatar']}</div>", unsafe_allow_html=True)
-            with e_col2:
-                st.markdown(f"**{expert['name']}**")
+            exp_c1, exp_c2 = st.columns([1, 3.5])
+            with exp_c1:
+                st.markdown(f"<div style='font-size:52px; text-align:center;'>{expert['avatar']}</div>", unsafe_allow_html=True)
+            with exp_c2:
+                st.markdown(f"<strong style='font-size:16px; color:#2F2663;'>{expert['name']}</strong>", unsafe_allow_html=True)
                 st.caption(f"{expert['title']} • {expert['rating']}")
-                st.caption(f"Languages: {expert['languages']}")
                 st.caption(f"Specialties: {expert['specialties']}")
+                st.caption(f"Languages: {expert['languages']} • {expert['sessions']}")
             
             slot = st.selectbox(
                 "Choose Your Confidential Slot:",
                 ["Tomorrow at 4:00 PM IST (Recommended)", "Tomorrow at 6:30 PM IST", "Saturday at 11:00 AM IST"]
             )
             
-            if st.button("📅 Lock In Session with Dedicated Expert", type="primary", use_container_width=True):
-                st.success(f"🎉 Session Successfully Confirmed with {expert['name']} for {slot}! Your expert continuity lock is activated.")
+            if st.button(f"📅 Book Confidential Session with {expert['name'].split(',')[0]}", use_container_width=True):
+                st.success(f"🎉 Session Confirmed with {expert['name']} for {slot}! Your expert continuity lock is activated.")
                 st.balloons()
