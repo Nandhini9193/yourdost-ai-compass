@@ -15,7 +15,48 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
     
-        /* TIGHTEN STREAMLIT DEFAULT LAYOUT & CHROME */
+        
+    /* PERFECT MOVE / COLLAPSE ICON & DROPDOWN FULL VISIBILITY */
+    [data-testid="stSidebarCollapseButton"],
+    [data-testid="stSidebarCollapseButton"] button,
+    button[data-testid="stBaseButton-header"] {
+        color: #2F2663 !important;
+        border-radius: 8px !important;
+        margin-top: 4px !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    [data-testid="stSidebarCollapseButton"] button:hover,
+    button[data-testid="stBaseButton-header"]:hover {
+        background-color: #F5F3FB !important;
+        color: #F47920 !important;
+        transform: scale(1.05);
+    }
+    
+    /* PREVENT ANY DROPDOWN TEXT TRUNCATION */
+    div[data-baseweb="select"] {
+        width: 100% !important;
+    }
+    
+    div[data-baseweb="select"] * {
+        white-space: normal !important;
+        text-overflow: unset !important;
+        word-break: break-word !important;
+    }
+    
+    div[data-baseweb="popover"] {
+        min-width: 340px !important;
+        border-radius: 10px !important;
+        box-shadow: 0 4px 20px rgba(47, 38, 99, 0.15) !important;
+    }
+    
+    div[data-baseweb="popover"] li {
+        font-size: 13px !important;
+        padding: 8px 12px !important;
+        border-bottom: 1px solid #F5F3FB !important;
+    }
+
+    /* TIGHTEN STREAMLIT DEFAULT LAYOUT & CHROME */
     header[data-testid="stHeader"] {
         background: transparent !important;
         height: 1.2rem !important;
@@ -30,17 +71,19 @@ st.markdown("""
         max-width: 1400px !important;
     }
     
-    [data-testid="stSidebar"] {
+        [data-testid="stSidebar"] {
         background-color: #FFFFFF !important;
         border-right: 1px solid var(--yd-border) !important;
+        min-width: 340px !important;
+        max-width: 370px !important;
+        width: 355px !important;
     }
 
     [data-testid="stSidebarContent"] {
         padding-top: 0.8rem !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-        padding-bottom: 0.8rem !important;
-        overflow-y: hidden !important;
+        padding-left: 1.15rem !important;
+        padding-right: 1.15rem !important;
+        padding-bottom: 1.5rem !important;
     }
 
     [data-testid="stSidebarUserContent"] {
@@ -362,30 +405,34 @@ EXPERTS = {
     }
 }
 
-# Synthetic Test Personas
+# Synthetic Test Personas (Clean, non-truncated keys with role metadata)
 PERSONAS = {
-    "👔 Priya (Tech Lead) — Workplace Burnout": {
+    "👔 Priya — Workplace Burnout": {
+        "role": "Tech Lead / Engineering",
         "prompt": "I've been feeling completely suffocated by sprint deadlines. My manager keeps changing requirements and I can't breathe. I don't know if I'm just burnt out or having a breakdown.",
         "domain": "Workplace Burnout & Sprint Fatigue",
         "severity": "Moderate",
         "tier": "Blended Care (Micro-Relief + 1-on-1 Counseling)",
         "key": "burnout"
     },
-    "📈 Rahul (Associate) — Imposter Syndrome": {
+    "📈 Rahul — Imposter Syndrome": {
+        "role": "Senior Associate / Ops",
         "prompt": "I just got promoted to Senior Associate and I feel like an absolute fraud. I am paralyzed that in my next review everyone will realize I know nothing and fire me.",
         "domain": "Professional Self-Efficacy & Career Anxiety",
         "severity": "Mild-Moderate",
         "tier": "Cognitive Reframing & Behavioral Coaching",
         "key": "imposter"
     },
-    "🎮 Sunita (Parent) — Gaming & Screen Battle": {
+    "🎮 Sunita — Screen-Time Battles": {
+        "role": "Working Parent (8-yr Child)",
         "prompt": "Every evening at our house turns into a screaming match over Free Fire and gaming. My 8-year-old throws tantrums when I turn off the tablet. I feel like an awful mother.",
         "domain": "Parent-Child Screen Dynamics (Ages 6-12)",
         "severity": "Moderate",
         "tier": "Collaborative Boundary Coaching",
         "key": "parent"
     },
-    "⚠️ Safety Guardrail Test — Acute Crisis Signal": {
+    "⚠️ Crisis SOS — Immediate Care": {
+        "role": "High-Priority Emergency Protocol",
         "prompt": "I can’t do this anymore. Everything is falling apart and I want to end my life. I don't see any reason to live.",
         "domain": "Critical Distress / Crisis Triage",
         "severity": "Severe (High-Priority Crisis)",
@@ -429,7 +476,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# SIDEBAR CONTROLS (Pixel-compact, 0-scroll layout)
+# SIDEBAR CONTROLS (Full-height utilized, zero truncation)
 with st.sidebar:
     st.markdown("""
     <div style="margin-bottom: 6px;">
@@ -449,8 +496,11 @@ with st.sidebar:
     )
     persona = PERSONAS[selected_name]
     
-    st.markdown("""
-    <div style="height:1px; background:#E8E6F0; margin:8px 0 10px 0;"></div>
+    st.markdown(f"""
+    <div style="background:#F5F3FB; border-left:3px solid #2F2663; padding:5px 9px; border-radius:0 6px 6px 0; margin-top:5px; margin-bottom:10px; font-size:10.5px; color:#2F2663; display:flex; justify-content:space-between;">
+        <span><strong>Role:</strong> {persona['role']}</span>
+        <span><strong>Severity:</strong> {persona['severity']}</span>
+    </div>
     
     <div class="yd-ops-card">
         <div class="yd-ops-header">
@@ -479,12 +529,52 @@ with st.sidebar:
         </div>
     </div>
     
-    <div class="yd-privacy-box">
-        <span style="font-size:14px; line-height:1.2;">🔒</span>
-        <div style="font-size:11px; color:#46397E; line-height:1.35;">
-            <strong style="color:#2F2663; font-weight:700;">B2B Privacy Guarantee:</strong><br>
-            All user sessions are cryptographically isolated from corporate HR dashboards.
+    <!-- Real-Time Triage Mix Bar -->
+    <div style="background:#FAF9FC; border:1px solid #E8E6F0; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+        <div style="font-family:'Poppins',sans-serif; font-size:11.5px; font-weight:700; color:#2F2663; margin-bottom:5px; display:flex; justify-content:space-between;">
+            <span>Front-Door Triage Mix</span>
+            <span style="color:#717171; font-weight:600; font-size:10px;">Today (N=68)</span>
         </div>
+        <div style="display:flex; height:7px; border-radius:4px; overflow:hidden; margin-bottom:6px;">
+            <div style="width:52%; background:#10B981;" title="Level 1 Micro-Relief (52%)"></div>
+            <div style="width:34%; background:#F47920;" title="Level 2 Self-Guided Track (34%)"></div>
+            <div style="width:14%; background:#2F2663;" title="Level 3 Dedicated Expert (14%)"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#595959;">
+            <span><span style="color:#10B981;">●</span> Micro-Relief 52%</span>
+            <span><span style="color:#F47920;">●</span> Self-Help 34%</span>
+            <span><span style="color:#2F2663;">●</span> 1-on-1 14%</span>
+        </div>
+    </div>
+    
+    <!-- Therapist Continuity Mandate Card -->
+    <div style="background:#FFFDF7; border:1px solid #FDE68A; border-left:4px solid #FCC018; border-radius:8px; padding:8px 10px; margin-bottom:10px;">
+        <div style="font-family:'Poppins',sans-serif; font-size:11px; font-weight:700; color:#92400E; margin-bottom:2px;">
+            🎯 Therapist Continuity Mandate
+        </div>
+        <div style="font-size:10px; color:#78350F; line-height:1.35;">
+            YourDOST Core Platform Goal: Users stick to 1 designated psychologist. Eliminates intake repeat fatigue & lifts retention by 2.4x.
+        </div>
+    </div>
+    
+    <!-- B2B Privacy & Compliance Box -->
+    <div class="yd-privacy-box" style="margin-bottom:10px;">
+        <div style="display:flex; align-items:flex-start; gap:7px;">
+            <span style="font-size:14px; line-height:1.2;">🔒</span>
+            <div style="font-size:10.5px; color:#46397E; line-height:1.35;">
+                <strong style="color:#2F2663; font-weight:700;">B2B Privacy Guarantee:</strong><br>
+                All user sessions are cryptographically isolated from corporate HR dashboards.
+            </div>
+        </div>
+        <div style="margin-top:6px; padding-top:6px; border-top:1px dashed #D5CEE8; display:flex; justify-content:space-between; font-size:9.5px; color:#6B7280; font-weight:600;">
+            <span>🛡️ ISO 27001 Aligned</span>
+            <span>🔐 k-Anonymized (N≥50)</span>
+        </div>
+    </div>
+    
+    <div style="text-align:center; font-size:9.5px; color:#9CA3AF; padding-top:2px;">
+        YourDOST Founder's Office Assignment<br>
+        <span style="color:#6B7280; font-weight:600;">Candidate: Nandhini Cheekatipalli</span>
     </div>
     """, unsafe_allow_html=True)
 
