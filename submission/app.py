@@ -427,13 +427,14 @@ with col_rec:
             b_c1, b_c2 = st.columns([1, 2])
             with b_c1:
                 if st.button("▶ Start 4-4-4-4 Breath"):
-                    prog = st.progress(0)
+                    prog = st.progress(0.0)
                     stat = st.empty()
-                    for phase in ["Inhale (4s)", "Hold (4s)", "Exhale (4s)", "Hold (4s)"]:
+                    phases = ["Inhale (4s)", "Hold (4s)", "Exhale (4s)", "Hold (4s)"]
+                    for idx, phase in enumerate(phases):
                         stat.markdown(f"**{phase}...**")
                         for _ in range(25):
                             time.sleep(0.04)
-                        prog.progress(min(1.0, prog.progress(0) + 0.25))
+                        prog.progress(float((idx + 1) / len(phases)))
                     stat.markdown("✨ *Cycle complete. Feel your heart rate settling.*")
             with b_c2:
                 st.caption("💡 120 seconds of paced respiration significantly reduces salivary cortisol and cognitive overwhelm.")
