@@ -5,7 +5,9 @@ import sys
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-df = pd.read_csv('C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/data/cleaned_active_survey.csv')
+import os
+base_dir = os.path.dirname(os.path.abspath(__file__))
+df = pd.read_csv(os.path.join(base_dir, 'cleaned_active_survey.csv'))
 
 print("="*60)
 print("INCOME BREAKDOWN")

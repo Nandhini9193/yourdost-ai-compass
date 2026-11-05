@@ -1,15 +1,14 @@
+import os
 import subprocess
+import html
 
-md_path = 'C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/task1_analysis/Task1_Data_Analysis_Supporting_Document.md'
+base_dir = os.path.dirname(os.path.abspath(__file__))
+md_path = os.path.join(base_dir, 'Task1_Data_Analysis_Supporting_Document.md')
 with open(md_path, 'r', encoding='utf-8') as f:
     md_text = f.read()
 
-# Let's convert basic markdown to HTML
-import html
-
 html_body = []
 in_code = False
-in_table = False
 
 for line in md_text.split('\n'):
     l = line.strip()
@@ -83,8 +82,8 @@ full_html = f"""<!DOCTYPE html>
 </html>
 """
 
-html_out = 'C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/task1_analysis/Task1_Document.html'
-pdf_out = 'C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/task1_analysis/Task1_Data_Analysis_Supporting_Document.pdf'
+html_out = os.path.join(base_dir, 'Task1_Document.html')
+pdf_out = os.path.join(base_dir, 'Task1_Data_Analysis_Supporting_Document.pdf')
 
 with open(html_out, 'w', encoding='utf-8') as f:
     f.write(full_html)

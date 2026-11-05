@@ -3,7 +3,9 @@ import numpy as np
 import scipy.stats as stats
 import json
 
-df = pd.read_csv('C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/data/survey_data.csv')
+import os
+base_dir = os.path.dirname(os.path.abspath(__file__))
+df = pd.read_csv(os.path.join(base_dir, 'survey_data.csv'))
 
 print(f"Total rows: {len(df)}")
 print("Does kid play games distribution:")
@@ -138,4 +140,4 @@ summary = {
 }
 print(json.dumps(summary, indent=2))
 
-df_active.to_csv('C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/data/cleaned_active_survey.csv', index=False)
+df_active.to_csv(os.path.join(base_dir, 'cleaned_active_survey.csv'), index=False)

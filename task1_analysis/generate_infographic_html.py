@@ -1,7 +1,8 @@
 import base64
 import os
 
-charts_dir = 'C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/task1_analysis/charts'
+base_dir = os.path.dirname(os.path.abspath(__file__))
+charts_dir = os.path.join(base_dir, 'charts')
 
 def get_base64(filename):
     path = os.path.join(charts_dir, filename)
@@ -490,7 +491,7 @@ html_content = f"""<!DOCTYPE html>
 </html>
 """
 
-html_path = 'C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/task1_analysis/infographic_gaming_impact.html'
+html_path = os.path.join(base_dir, 'infographic_gaming_impact.html')
 with open(html_path, 'w', encoding='utf-8') as f:
     f.write(html_content)
 

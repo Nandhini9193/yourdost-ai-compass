@@ -9,10 +9,12 @@ plt.style.use('seaborn-v0_8-whitegrid' if 'seaborn-v0_8-whitegrid' in plt.style.
 plt.rcParams['font.family'] = 'sans-serif'
 plt.rcParams['font.sans-serif'] = ['DejaVu Sans', 'Arial', 'Helvetica']
 
-out_dir = 'C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/task1_analysis/charts'
+base_dir = os.path.dirname(os.path.abspath(__file__))
+out_dir = os.path.join(base_dir, 'charts')
 os.makedirs(out_dir, exist_ok=True)
 
-df = pd.read_csv('C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/data/cleaned_active_survey.csv')
+data_path = os.path.join(base_dir, '..', 'data', 'cleaned_active_survey.csv')
+df = pd.read_csv(data_path)
 
 def is_shooter(text):
     if pd.isna(text):

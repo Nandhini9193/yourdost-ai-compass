@@ -2,7 +2,9 @@ import pandas as pd
 import numpy as np
 import scipy.stats as stats
 
-df = pd.read_csv('C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/data/cleaned_active_survey.csv')
+import os
+base_dir = os.path.dirname(os.path.abspath(__file__))
+df = pd.read_csv(os.path.join(base_dir, 'cleaned_active_survey.csv'))
 
 print("="*60)
 print("1. THE COGNITIVE DISSONANCE: PERCEPTIONS VS FEARS")

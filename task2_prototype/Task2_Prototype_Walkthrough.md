@@ -4,18 +4,26 @@
 **Candidate:** Cheekatipalli Nandhini  
 **Application:** Business Analyst, Founder’s Office — YourDOST  
 **Runnable Demo URL:** `http://localhost:3000` (Local Node.js instance)  
-**Visual Reference:** [`prototype_screenshot.png`](file:///C:/Users/new/.gemini/antigravity/scratch/yourdost-ba-assignment/task2_prototype/prototype_screenshot.png)
+**Visual Reference:** [`prototype_screenshot.png`](./prototype_screenshot.png)
 
 ---
 
 ### 1. Prototype Quickstart Instructions
 
-The prototype is fully implemented, self-contained, and currently active in the workspace environment:
+The prototype is fully implemented and deployable via Streamlit or Node.js:
 ```bash
-# Navigate to the prototype directory
-cd C:\Users\new\.gemini\antigravity\scratch\yourdost-ba-assignment\task2_prototype
+# Clone the repository
+git clone https://github.com/Nandhini9193/yourdost-ai-compass.git
+cd yourdost-ai-compass
 
-# Start the server (already running in background on port 3000)
+# Run Streamlit Prototype (Recommended)
+pip install -r requirements.txt
+streamlit run app.py
+```
+Or run the Node.js version:
+```bash
+cd task2_prototype
+npm install
 node server.js
 ```
 Open any web browser and navigate to: **`http://localhost:3000`**
