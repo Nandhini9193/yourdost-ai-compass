@@ -3,7 +3,7 @@
 
 **Candidate:** Cheekatipalli Nandhini  
 **Role:** Business Analyst, Founder’s Office — YourDOST  
-**Live Working Prototype:** 🌐 **[https://goat-retired-dee-left.trycloudflare.com](https://goat-retired-dee-left.trycloudflare.com)**  
+**Live Working Prototype (24/7 Cloud):** 🌐 **[https://yourdost-compass-ai.streamlit.app](https://yourdost-compass-ai.streamlit.app)**
 **GitHub Repository:** 📁 **[https://github.com/Nandhini9193/yourdost-ai-compass](https://github.com/Nandhini9193/yourdost-ai-compass)**  
 
 ---
@@ -29,7 +29,7 @@ This repository contains the required deliverables for the two strategic tasks a
 #### 🧭 Task 2: Build an AI-Powered Product Prototype ("DOST Compass")
 | Deliverable (per Prompt) | Format | Access Link | Description |
 | :--- | :--- | :--- | :--- |
-| **1. Working Prototype** | Live Web App & Runnable Demo | **[Launch DOST Compass (Live Link)](https://goat-retired-dee-left.trycloudflare.com)** | Fully interactive web application demonstrating natural conversational intake, live Box Breathing widget, therapist booking with **Continuity Lock**, and real-time clinical ops analytics. |
+| **1. Working Prototype** | Live 24/7 Cloud App & Runnable Code | **[Launch DOST Compass (Live 24/7 Link)](https://yourdost-compass-ai.streamlit.app)** | Fully interactive web application demonstrating natural conversational intake, live Box Breathing widget, therapist booking with **Continuity Lock**, and real-time clinical ops analytics. |
 | **2. Product Decisions Document (Max 2 Pages)** | Executive PDF | **[View Product Decisions (PDF)](./submission/Task2_AI_Product_Prototype_Document.pdf)** | 2-page strategic document outlining opportunity identification, why AI, key assumptions, trade-offs, crisis escalation protocols, and success metrics (Stickiness Rate). |
 | **3. Prototype Walkthrough** | Markdown Guide | **[View Prototype Walkthrough Guide](./task2_prototype/Task2_Prototype_Walkthrough.md)** | Step-by-step walkthrough demonstrating 4 end-to-end user journeys (Burnout, Imposter Syndrome, Screen Battle, and Crisis SOS). |
 

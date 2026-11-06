@@ -3,7 +3,8 @@
 
 **Candidate:** Cheekatipalli Nandhini  
 **Application:** Business Analyst, Founder’s Office — YourDOST  
-**Runnable Demo URL:** `http://localhost:3000` (Local Node.js instance)  
+**Live 24/7 Cloud Prototype:** 🌐 **[https://yourdost-compass-ai.streamlit.app](https://yourdost-compass-ai.streamlit.app)**  
+**Local Demo URL:** `http://localhost:8501` (Streamlit) / `http://localhost:3000` (Node.js)  
 **Visual Reference:** [`prototype_screenshot.png`](./prototype_screenshot.png)
 
 ---
